@@ -25,7 +25,7 @@ namespace TouchLinux.ConPTY.WPF
         {
             // Start up the console, and point it to cmd.exe.
             // 翻译： 启动控制台，并指向cmd.exe。
-            Task.Run(() => _terminal.Start("powershell.exe"));
+            Task.Run(() => _terminal.Start("powershell.exe")); // ssh 192.168.4.93 -l yinyue
             _terminal.OutputReady += Terminal_OutputReady;
         }
 
@@ -56,7 +56,7 @@ namespace TouchLinux.ConPTY.WPF
                         // For now, just emit raw VT100 to the primary TextBlock.
                         // 翻译： 然后，你将做一些渲染。
                         // 目前，只是将原始VT100输出到主要TextBlock。
-                        TerminalHistoryBlock.Text += new string(buf.Take(bytesRead).ToArray());
+                        TerminalHistoryBlock.Text += new string(buf);
                     });
                 }
             }
@@ -66,10 +66,8 @@ namespace TouchLinux.ConPTY.WPF
         {
             if (!e.Handled)
             {
-                // This is where you'd take the pressed key, and convert it to a 
-                // VT100 code before sending it along. For now, we'll just send _something_.
-                // 翻译： 这是你将按下的键，并将其转换为VT100代码之前发送它。
-                // 目前，我们只会发送_something_。
+                // This is where you'd take the pressed key, and convert it to a VT100 code before sending it along. For now, we'll just send _something_.
+                // 翻译： 这是你将按下的键，并将其转换为VT100代码之前发送它。目前，我们只会发送“某些”。
                 _terminal.WriteToPseudoConsole(e.Key.ToString());
             }
         }

@@ -11,4 +11,8 @@
     <PackageReference Include="SSH.NET" Version="2020.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TouchLinux.ConPTY.WPF\TouchLinux.ConPTY.WPF.csproj" />
+  </ItemGroup>
+
 </Project>
