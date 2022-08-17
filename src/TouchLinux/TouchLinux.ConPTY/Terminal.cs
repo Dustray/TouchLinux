@@ -77,6 +77,15 @@ namespace TouchLinux.ConPTY
             _consoleInputWriter.Write(input);
         }
 
+        public void WriteToPseudoConsole(char[] data)
+        {
+            if (_consoleInputWriter == null)
+            {
+                throw new InvalidOperationException("There is no writer attached to a pseudoconsole. Have you called Start on this instance yet?");
+            }
+            _consoleInputWriter.Write(data, 0, data.Length);
+        }
+
         /// <summary>
         /// Get an AutoResetEvent that signals when the process exits
         /// </summary>
